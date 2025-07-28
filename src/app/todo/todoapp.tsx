@@ -6,19 +6,45 @@ import Form from './components/Form';
 import List from './components/List';
 import Filter from './components/Filter';
 
-
 export default function Todoapp() {
-  const [todos, setTodos] = useState<Todo[]>(() => {
-    const savedTodos = localStorage.getItem('todos');
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
-  
+  // ✅ Start with empty array (safe for SSR)
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<FilterType>('All');
+  const [isHydrated, setIsHydrated] = useState(false);
   
+  const [theme, setTheme] = useState<Theme>('light');
+
+  // ✅ Load from localStorage AFTER component mounts (client-side only)
+  useEffect(() => {
+    const savedTodos = localStorage.getItem('todos');
+    if (savedTodos) {
+      setTodos(JSON.parse(savedTodos));
+    }
+    
+    const savedTheme = localStorage.getItem('theme') as Theme;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+    
+    setIsHydrated(true);
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    if (isHydrated) {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }, [todos, isHydrated]);
+
+  useEffect(() => {
+    if (isHydrated) {
+      localStorage.setItem('theme', theme);
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, [theme, isHydrated]);
 
 
   const addTodo = (text: string): void => {
