@@ -1,16 +1,16 @@
+'use client'
+
 import Todoapp from "./todoapp"
 import Link from "next/link"
-
+import { space_mono } from "../lib/fonts"
 
 export default function Page() {
     return (
-        <div className="min-h-screen bg-gray-900">
+        <div className={`${space_mono.className} min-h-screen bg-gray-900`}>
             <div className="px-2 py-2"><Link href="/">home</Link></div>
             <div className="py-8">
                 <Todoapp/>
             </div>
         </div>
-
-
     )
 } 
