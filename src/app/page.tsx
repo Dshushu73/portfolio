@@ -20,9 +20,9 @@ export default function Page() {
           <div className='mt-10 sm:mt-16 lg:mt-20 space-y-3 sm:space-y-4'>
             <h2 className='font-bold text-xl sm:text-2xl text-gray-300'>Projects</h2>
             
-            {/* Mobile-first responsive projects layout */}
+       
             <div className='border-2 border-gray-300'>
-              {/* Todo Project */}
+           
               <div className='border-b-2 border-gray-300 last:border-b-0'>
                 <div className='flex flex-col sm:flex-row'>
                   <div className='px-2 py-2 sm:px-2 sm:py-2 font-bold sm:w-1/4 border-b sm:border-b-0 sm:border-r-2 border-gray-300'>
@@ -34,7 +34,7 @@ export default function Page() {
                 </div>
               </div>
               
-              {/* TicTacToe Project */}
+           
               <div className='border-b-2 border-gray-300 last:border-b-0'>
                 <div className='flex flex-col sm:flex-row'>
                   <div className='px-2 py-2 sm:px-2 sm:py-2 font-bold sm:w-1/4 border-b sm:border-b-0 sm:border-r-2 border-gray-300'>
